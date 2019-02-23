@@ -40,7 +40,7 @@ public class BookRepositoryRestTests {
 
     @Test
     public void createBook() throws Exception {
-        Long authorId = getAuthorId();
+        Long authorId = em.persistAndGetId(Author.of(null, "Rudyard", "Kipling", ACTIVE), Long.class);
 
         JSONObject request = new JSONObject();
 
@@ -62,10 +62,6 @@ public class BookRepositoryRestTests {
                 .andExpect(jsonPath("$.author.firstName", is("Rudyard")))
                 .andExpect(jsonPath("$.author.lastName", is("Kipling")))
                 .andExpect(jsonPath("$._links.author.href", containsString("/authors/" + authorId)));
-    }
-
-    private Long getAuthorId() {
-        return em.persistAndGetId(Author.of(null, "Rudyard", "Kipling", ACTIVE), Long.class);
     }
 
 }
