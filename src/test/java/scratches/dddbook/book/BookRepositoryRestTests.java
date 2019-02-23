@@ -81,4 +81,20 @@ public class BookRepositoryRestTests {
                 .andExpect(jsonPath("$.message", is("author must be active")));
     }
 
+    @Test
+    public void createBookWithoutTitle() throws Exception {
+        Long authorId = em.persistAndGetId(Author.of(null, "Robert", "Frost", ACTIVE), Long.class);
+
+        JSONObject request = new JSONObject();
+
+        request.put("authorId", authorId);
+        request.put("title", "");
+
+        mvc.perform(
+                post("/books").content(request.toString())
+        )
+                .andExpect(status().isInternalServerError())
+                .andExpect(jsonPath("$.message", is("book title is cannot be blank")));
+    }
+
 }
