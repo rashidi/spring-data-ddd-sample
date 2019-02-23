@@ -21,6 +21,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static scratches.dddbook.author.Author.Status.ACTIVE;
+import static scratches.dddbook.author.Author.Status.INACTIVE;
 
 /**
  * @author Rashidi Zin
@@ -62,6 +63,22 @@ public class BookRepositoryRestTests {
                 .andExpect(jsonPath("$.author.firstName", is("Rudyard")))
                 .andExpect(jsonPath("$.author.lastName", is("Kipling")))
                 .andExpect(jsonPath("$._links.author.href", containsString("/authors/" + authorId)));
+    }
+
+    @Test
+    public void createBookWithInactiveAuthor() throws Exception {
+        Long authorId = em.persistAndGetId(Author.of(null, "William", "Shakespeare", INACTIVE), Long.class);
+
+        JSONObject request = new JSONObject();
+
+        request.put("authorId", authorId);
+        request.put("title", "The Jungle Book");
+
+        mvc.perform(
+                post("/books").content(request.toString())
+        )
+                .andExpect(status().isInternalServerError())
+                .andExpect(jsonPath("$.message", is("author must be active")));
     }
 
 }
