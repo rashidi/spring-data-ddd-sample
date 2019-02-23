@@ -1,0 +1,2 @@
+# Domain Driven Design with Spring Data [![Build Status](https://travis-ci.org/rashidi/spring-data-ddd-sample.svg?branch=master)](https://travis-ci.org/rashidi/spring-data-ddd-sample)
+Domain Driven Design (DDD) sample application using Spring Data JPA and Spring Data REST 
