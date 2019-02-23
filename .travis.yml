@@ -10,3 +10,8 @@ cache:
     - "$HOME/.m2/repository"
 notifications:
   email: false
+addons:
+  sonarcloud:
+    organization: "rashidi-github"
+script:
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
