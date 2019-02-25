@@ -1,2 +1,2 @@
-# Domain Driven Design with Spring Data [![Build Status](https://travis-ci.org/rashidi/spring-data-ddd-sample.svg?branch=master)](https://travis-ci.org/rashidi/spring-data-ddd-sample)
+# Domain Driven Design with Spring Data [![Build Status](https://travis-ci.org/rashidi/spring-data-ddd-sample.svg?branch=master)](https://travis-ci.org/rashidi/spring-data-ddd-sample) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=scratches%3Addd-book&metric=alert_status)](https://sonarcloud.io/dashboard?id=scratches%3Addd-book)
 Domain Driven Design (DDD) sample application using Spring Data JPA and Spring Data REST 
